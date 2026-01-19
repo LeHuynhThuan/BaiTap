@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Đơn Giản - Tương Tác</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            margin-top: 20px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-section {
+            margin-bottom: 30px;
+        }
+
+        .info-section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .info-section p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            flex: 1;
+            min-width: 140px;
+            padding: 12px 24px;
+            background-color: #667eea;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:hover {
+            background-color: #764ba2;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .form-section {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .form-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .message.info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+            display: block;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            flex: 1;
+            min-width: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-box h4 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .stat-box p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>👋 Xin chào bạn!</h1>
+        <p>Chào mừng bạn đến với trang web tương tác</p>
+    </header>
+
+    <div class="container">
+        <!-- Thông tin giới thiệu -->
+        <div class="info-section">
+            <h2><span class="emoji">📚</span>Về trang web này</h2>
+            <p>Đây là một trang web HTML/CSS/JavaScript đơn giản nhưng đầy đủ tính năng tương tác.</p>
+            <p>Bạn có thể điền form, bấm các nút tương tác và thấy các phản ứng ngay lập tức!</p>
+        </div>
+
+        <!-- Form nhập liệu -->
+        <div class="form-section">
+            <h3><span class="emoji">📝</span>Điền thông tin của bạn</h3>
+            <form id="userForm">
+                <div class="form-group">
+                    <label for="name">Tên của bạn:</label>
+                    <input type="text" id="name" name="name" placeholder="Nhập tên của bạn..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Nhập email của bạn..." required>
+                </div>
+
+                <button type="submit" class="submit-btn"><span class="emoji">✅</span>Gửi thông tin</button>
+            </form>
+            <div id="formMessage" class="message"></div>
+        </div>
+
+        <!-- Nút tương tác -->
+        <div class="info-section">
+            <h2><span class="emoji">🎮</span>Các nút tương tác</h2>
+            <p>Bấm vào các nút dưới đây để thấy những hiệu ứng tương tác:</p>
+
+            <div class="button-group">
+                <button onclick="showAlert()"><span class="emoji">💬</span>Thông báo</button>
+                <button onclick="changeColor()"><span class="emoji">🎨</span>Đổi màu</button>
+                <button onclick="resetColor()"><span class="emoji">↺</span>Reset</button>
+            </div>
+
+            <div id="interactionMessage" class="message"></div>
+        </div>
+
+        <!-- Thống kê -->
+        <div class="stats">
+            <div class="stat-box">
+                <h4 id="clickCount">0</h4>
+                <p>Lần bấm</p>
+            </div>
+            <div class="stat-box">
+                <h4 id="colorCount">0</h4>
+                <p>Lần đổi màu</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        let colorCount = 0;
+        const colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#00f2fe', '#43e97b'];
+        let colorIndex = 0;
+
+        function showAlert() {
+            const name = document.getElementById('name').value;
+            const message = name ? `Xin chào ${name}! 👋` : 'Vui lòng điền tên của bạn trước!';
+            alert(message);
+            
+            clickCount++;
+            document.getElementById('clickCount').textContent = clickCount;
+            
+            showMessage('Bạn vừa bấm nút thông báo! 💬', 'info');
+        }
+
+        function changeColor() {
+            colorIndex = (colorIndex + 1) % colors.length;
+            document.body.style.background = `linear-gradient(135deg, ${colors[colorIndex]} 0%, ${colors[(colorIndex + 1) % colors.length]} 100%)`;
+            
+            colorCount++;
+            document.getElementById('colorCount').textContent = colorCount;
+            
+            showMessage('Màu nền đã thay đổi! 🎨', 'info');
+        }
+
+        function resetColor() {
+            colorIndex = 0;
+            document.body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            document.getElementById('interactionMessage').style.display = 'none';
+            showMessage('Đã reset màu nền! ↺', 'info');
+        }
+
+        function showMessage(text, type) {
+            const msgDiv = document.getElementById('interactionMessage');
+            msgDiv.textContent = text;
+            msgDiv.className = `message ${type}`;
+        }
+
+        document.getElementById('userForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            const formMsg = document.getElementById('formMessage');
+            formMsg.innerHTML = `<span class="emoji">✅</span> Cảm ơn ${name}! Chúng tôi sẽ liên hệ với bạn qua ${email}`;
+            formMsg.className = 'message success';
+            
+            // Reset form sau 2 giây
+            setTimeout(() => {
+                this.reset();
+                formMsg.style.display = 'none';
+            }, 3000);
+        });
+    </script>
+
+</body>
+</html>
